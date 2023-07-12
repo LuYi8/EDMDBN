@@ -5,7 +5,7 @@
 #######################
 import argparse
 import typing
-from utils.openface_align_face import align_face_by_openface
+from merlib.preprocess.utils.openface_align_face import align_face_by_openface
 
 from pathlib import Path,PurePath
 from tqdm import tqdm

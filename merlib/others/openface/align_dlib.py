@@ -185,7 +185,7 @@ class AlignDlib:
         # target_land=imgDim*MINMAX_TEMPLATE[npLandmarkIndices]
         target_land=(imgDim*0.8)* MINMAX_TEMPLATE[npLandmarkIndices]
         target_land[:,0]=target_land[:,0]+imgDim*0.1
-        target_land[:,1]=target_land[:,1]+imgDim*0.15
+        target_land[:,1]=target_land[:,1]+imgDim*0.18
 
         # target_land[:,1]=target_land[:,1]+imgDim*down_rate
 

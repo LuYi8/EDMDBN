@@ -69,7 +69,7 @@ def transform_labels_to_ids(num_classes: int, df: pd.DataFrame,dataset_name=None
         df = df.reset_index(drop=True)
         df['label'] = df['label'].map(ThreeEmotion.str2id)
         return df
-    if num_classes == 5:
+    if num_classes == 5 or num_classes == 4:
         df['label'] = df['emotion_label'].map(FiveEmotion(dataset_name).transform)
         df = df[~df.label.isna()]  # 过滤情感类型为other的sample
         df = df.reset_index(drop=True)
@@ -113,7 +113,8 @@ def main(args):
         n_class_id2str_fun=ThreeEmotion.id2str
         if args.num_classes==5:
             n_class_id2str_fun=FiveEmotion(args.dataset_name).id2str
-
+        if args.num_classes==4 and args.dataset_name==MMEW_info.name:
+            n_class_id2str_fun=FiveEmotion(args.dataset_name).id2str
         generate_annotations_explanation(df,save_path/'{}classes_annotations_explanation.txt'.format(num_classes), n_class_id2str_fun)
         
     # 生成交叉数据库的标注信息

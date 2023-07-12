@@ -141,6 +141,7 @@ class MMEW_info:
             return ['happiness', 'surprise', 'disgust',  'others']
         else:
             return []
+        
 @dataclass
 class CASME3PartA_info:
     name = 'casme3-partA'
@@ -272,7 +273,7 @@ class FiveEmotion:
     emotions = {
         CASME2_info.name: CASME2_info.get_labels(5),
         SAMM_info.name:SAMM_info.get_labels(5),
-        MMEW_info.name: MMEW_info.get_labels(4),
+        MMEW_info.name:MMEW_info.get_labels(4)
     }
 
     def __init__(self, dataset_name):

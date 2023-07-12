@@ -77,3 +77,31 @@ def visualize_dlib_bbox(img:Image.Image,show_landmarks=True,show_vis=True,*,show
     return visualize_bbox_landmarks(img,bbox,None,show_vis=show_vis,names=names)
 # def visualize_landmarks
 
+from pathlib import Path
+import typing
+from collections import defaultdict
+import random
+def sample_precessed_data(data_root:typing.Union[Path,str],template="*.jpg"):
+    data_root=Path(data_root)
+    all_imgs=data_root.rglob(template)
+
+    def check_hidden_files(file_path):
+        for part in file_path.parts:
+            if part.startswith('.'):
+                return True
+        return False
+    all_imgs=list(filter(lambda x: not check_hidden_files(x), all_imgs))
+    all_imgs=sorted(all_imgs)
+    img_dir_dict=defaultdict(list)
+    for x in all_imgs:
+        img_dir_dict[x.parent].append(x)
+    
+    res=[]
+    for x in img_dir_dict:
+        imgs=img_dir_dict[x]
+        rand_img_path=random.choice(imgs)
+        flag=rand_img_path.relative_to(data_root).parent
+        img=Image.open(rand_img_path)
+        res.append((img,flag))
+
+    return [x[0] for x in res],[x[1] for x in res]

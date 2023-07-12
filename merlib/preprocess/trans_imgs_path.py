@@ -25,7 +25,7 @@ def main(args):
     for img_path, now_path in zip(orign_path_list,now_path_list):
         img_path= Path(img_path)
         now_path = Path(now_path)
-        shutil.copy2(img_path, now_path)
+        shutil.copytree(img_path, now_path)
     pass
 
 
